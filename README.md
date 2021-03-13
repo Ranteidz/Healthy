@@ -1,5 +1,5 @@
 # Healthy
- Android app for AND course by Aurimas Bruzgys 
+Android app for AND course by Aurimas Bruzgys 
 
 
 Project idea : 
@@ -10,8 +10,7 @@ and the goal of "Healthy" is to combine the features of these apps and offer a o
 
 MoSCoW requirements :
 
-    Must have :
-    
+    Must have :    
     * Login page
     * Profile creation (weight, height, physical activity, and such)
     * Architecture that supports new activity introduction
@@ -19,8 +18,7 @@ MoSCoW requirements :
     * Meditation area - simple timer with a sound notification when the time passed
     * Fasting area - user can select fast start/ fasting period and the app must calculate remaining time left
     
-    Should have :
-    
+    Should have :    
     * Excercise area - simple exercise routines with pictures explaining exercises and recommended repetitions
     * Calendar to track activities 
     * Features learned in the course 
@@ -32,11 +30,10 @@ MoSCoW requirements :
     * Achievements and daily login rewards
     * Skippable ads
     
-    Won't have :
-    
+    Won't have :    
     * Ratings
     * Comments 
     * Social media account log in
     * Blogs
     
-Items listed above are subject to change.
+ Items listed above are subject to change.
