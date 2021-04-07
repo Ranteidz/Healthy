@@ -9,7 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Healthy">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.settings.About"></activity>
+        <activity android:name=".activities.settings.Help" />
+        <activity android:name=".activities.settings.Settings" />
+        <activity android:name=".activities.settings.Notifications" />
+        <activity android:name=".activities.settings.Profile" />
+        <activity android:name=".activities.Fasting" />
+        <activity android:name=".activities.WaterIntake" />
+        <activity android:name=".activities.Meditation" />
+        <activity android:name=".activities.Excercise" />
+        <activity android:name=".activities.Home" />
+        <activity android:name=".activities.CreateAccount" />
+        <activity android:name=".activities.LoginP" />
+               <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

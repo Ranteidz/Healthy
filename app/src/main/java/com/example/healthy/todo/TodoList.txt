@@ -1,0 +1,8 @@
+
+*Change some activities to fragments and use navigation manager (this was not done initially because navigation manager was not part of the curriculum)
+
+
+
+*Current tasks*
+*Fix links to activities, use return true in switch
+*Create baseclass for top and bottom navigation bars for re usability
