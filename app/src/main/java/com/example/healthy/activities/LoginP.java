@@ -21,16 +21,12 @@ import com.example.healthy.activities.settings.Settings;
 import com.example.healthy.navigation.BaseNav;
 
 public class LoginP extends AppCompatActivity {
-  Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        toolbar = findViewById(R.id.topNavBaras);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void LoginPressed(View view) {

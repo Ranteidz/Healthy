@@ -6,13 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".activities.LoginP">
 
-  <com.google.android.material.appbar.MaterialToolbar
-      android:id="@+id/topNavBaras"
-      android:layout_width="match_parent"
-      android:layout_height="?attr/actionBarSize"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" ></com.google.android.material.appbar.MaterialToolbar>
+
 
     <ImageView
         android:id="@+id/Logo"

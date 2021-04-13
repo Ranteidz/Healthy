@@ -2,29 +2,38 @@ package com.example.healthy.navigation;
 
 import android.content.Context;
 import android.content.Intent;
-import android.provider.ContactsContract;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.healthy.MainActivity;
 import com.example.healthy.R;
-import com.example.healthy.activities.LoginP;
-import com.example.healthy.activities.Meditation;
 import com.example.healthy.activities.settings.About;
 import com.example.healthy.activities.settings.Help;
 import com.example.healthy.activities.settings.Notifications;
 import com.example.healthy.activities.settings.Profile;
 import com.example.healthy.activities.settings.Settings;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BaseNav extends AppCompatActivity {
+public class BaseNav extends AppCompatActivity  {
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+
         return true;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull String name, @NonNull Context context, @NonNull AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
     }
 
     @Override
@@ -55,5 +64,8 @@ public class BaseNav extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+
     }
+
+
 }

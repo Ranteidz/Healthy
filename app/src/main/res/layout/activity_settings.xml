@@ -7,7 +7,13 @@
     tools:context=".activities.settings.Settings"
     android:background="@color/purple_700">
 
-    <include layout="@layout/topnav"/>
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/topNavBaras"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></com.google.android.material.appbar.MaterialToolbar>
 
     <TextView
         android:layout_width="match_parent"

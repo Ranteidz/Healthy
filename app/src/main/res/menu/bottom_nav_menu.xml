@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/home_bot_menu"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/exercise_bot_menu"
+        android:icon="@drawable/ic_excercise"
+        android:title="@string/exercise" />
+    <item
+        android:id="@+id/meditation_bot_menu"
+        android:icon="@drawable/ic_meditation"
+        android:title="@string/meditation" />
+
+    <item
+        android:id="@+id/water_bot_menu"
+        android:icon="@drawable/ic_water"
+        android:title="@string/water" />
+    <item
+        android:id="@+id/fasting_bot_menu"
+        android:icon="@drawable/ic_fasting"
+        android:title="@string/fasting" />
+
+</menu>
