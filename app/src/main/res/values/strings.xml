@@ -33,5 +33,7 @@
     <string name="home">Home</string>
     <string name="water">Water</string>
     <string name="fasting">Fasting</string>
+    <string name="meditation_qoute">“Meditation is like a gym in which you develop the powerful mental muscles of calm and insight.”</string>
+    <string name="meditation_duration">Duration</string>
 
 </resources>
