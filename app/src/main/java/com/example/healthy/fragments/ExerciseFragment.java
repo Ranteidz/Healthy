@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.healthy.R;
 
-public class ExcerciseFragment extends Fragment {
+public class ExerciseFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -51,6 +51,7 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
         aSwitch.setOnClickListener(this);
 
         meditationViewModel = new ViewModelProvider(this).get(MeditationViewModel.class);
+
         meditationViewModel.updateTimer().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -69,7 +70,7 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
         meditationViewModel.getIsFinishedBell().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(aBoolean){
+                if (aBoolean) {
                     play(getView());
                 }
             }
@@ -91,13 +92,13 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
 
             case R.id.meditation_start_button:
                 if (radioID == R.id.meditaion_radio_5min) {
-                    meditationViewModel.startTimer(300000,aSwitch.isChecked());
+                    meditationViewModel.startTimer(300000, aSwitch.isChecked());
                     return;
                 } else if (radioID == R.id.meditaion_radio_10min) {
-                    meditationViewModel.startTimer(600000,aSwitch.isChecked());
+                    meditationViewModel.startTimer(600000, aSwitch.isChecked());
                     return;
                 } else if (radioID == R.id.meditaion_radio_15min) {
-                    meditationViewModel.startTimer(900000,aSwitch.isChecked());
+                    meditationViewModel.startTimer(900000, aSwitch.isChecked());
                     return;
                 }
             case R.id.meditation_pause_button:
@@ -108,7 +109,7 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
                 toast2.show();
                 return;
             case R.id.meditation_switch:
-               /* play(getView());*/
+                /* play(getView());*/
                 return;
             default:
         }

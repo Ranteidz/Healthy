@@ -4,13 +4,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.healthy.R;
-import com.example.healthy.fragments.ExcerciseFragment;
+import com.example.healthy.fragments.ExerciseFragment;
 import com.example.healthy.fragments.FastingFragment;
 import com.example.healthy.fragments.HomeFragment;
 import com.example.healthy.fragments.MeditationFragment;
@@ -21,7 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class Home extends BaseNav {
     private Toolbar toolbar;
     Fragment homeFragment = new HomeFragment();
-    Fragment excerciseFragment = new ExcerciseFragment();
+    Fragment excerciseFragment = new ExerciseFragment();
     Fragment fastingFragment = new FastingFragment();
     Fragment meditationFragment = new MeditationFragment();
     Fragment waterFragment = new WaterFragment();

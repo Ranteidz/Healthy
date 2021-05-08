@@ -17,7 +17,6 @@ public class MeditationViewModel extends ViewModel {
     MediaPlayer mediaPlayer;
 
 
-
     private MutableLiveData<String> timer = new MutableLiveData<>();
     private MutableLiveData<Boolean> isSwitched = new MutableLiveData<>();
     private MutableLiveData<Boolean> isFinished = new MutableLiveData<>(false);
@@ -25,43 +24,52 @@ public class MeditationViewModel extends ViewModel {
     private Boolean isRunning;
     private static long time;
 
+    public MeditationViewModel() {
+        this.isRunning = false;
+    }
+
     public LiveData<Boolean> getIsSwitched() {
         return isSwitched;
     }
-    public LiveData<Boolean> getIsFinishedBell(){
+
+    public LiveData<Boolean> getIsFinishedBell() {
         return isFinished;
     }
 
 
-    public void startTimer(long timeInMillis,boolean isBellOn) {
+    public void startTimer(long timeInMillis, boolean isBellOn) {
+
 
         isFinished.setValue(false);
-        isRunning = true;
         time = timeInMillis;
-        countDownTimer = new CountDownTimer(time, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                time = millisUntilFinished;
-                updateTimer();
-            }
-
-            @Override
-            public void onFinish() {
-
-
-                isRunning = false;
-                if(isBellOn) {
-                    isFinished.setValue(true);
+        if (!isRunning) {
+            countDownTimer = new CountDownTimer(time, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    time = millisUntilFinished;
+                    updateTimer();
+                    isRunning = true;
                 }
-                //TODO add persistence
+
+                @Override
+                public void onFinish() {
 
 
-            }
-        }.start();
+                    isRunning = false;
+                    if (isBellOn) {
+                        isFinished.setValue(true);
+                    }
+                    //TODO add persistence
+
+
+                }
+            }.start();
+        }
     }
 
+
     public void pauseTimer() {
-        if(countDownTimer!=null) {
+        if (countDownTimer != null) {
             countDownTimer.cancel();
             isRunning = false;
         }
