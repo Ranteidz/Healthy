@@ -13,6 +13,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -38,7 +39,7 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         view = inflater.inflate(R.layout.fragment_meditation, container, false);
         aSwitch = view.findViewById(R.id.meditation_switch);
         radioGroup = view.findViewById(R.id.meditation_rgroup);
@@ -50,16 +51,22 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
         pauseButton.setOnClickListener(this);
         aSwitch.setOnClickListener(this);
 
-        meditationViewModel = new ViewModelProvider(this).get(MeditationViewModel.class);
+        return view;
 
-        meditationViewModel.updateTimer().observe(getViewLifecycleOwner(), new Observer<String>() {
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+
+        meditationViewModel = new ViewModelProvider(this).get(MeditationViewModel.class);
+        meditationViewModel.updateTimer().observeForever( new Observer<String>() {
             @Override
             public void onChanged(String s) {
                 timer.setText(s);
             }
         });
 
-        meditationViewModel.getIsSwitched().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+        meditationViewModel.getIsSwitched().observeForever( new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 aSwitch.setChecked(aBoolean);
@@ -67,7 +74,7 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
             }
         });
 
-        meditationViewModel.getIsFinishedBell().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+        meditationViewModel.getIsFinishedBell().observeForever( new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
                 if (aBoolean) {
@@ -76,11 +83,20 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
             }
         });
 
-
-        return view;
+        super.onCreate(savedInstanceState);
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+
+        super.onViewStateRestored(savedInstanceState);
+    }
 
     @Override
     public void onClick(View v) {
@@ -92,7 +108,7 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
 
             case R.id.meditation_start_button:
                 if (radioID == R.id.meditaion_radio_5min) {
-                    meditationViewModel.startTimer(300000, aSwitch.isChecked());
+                    meditationViewModel.startTimer(10000, aSwitch.isChecked());
                     return;
                 } else if (radioID == R.id.meditaion_radio_10min) {
                     meditationViewModel.startTimer(600000, aSwitch.isChecked());

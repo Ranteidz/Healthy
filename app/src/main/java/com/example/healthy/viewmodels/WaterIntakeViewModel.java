@@ -26,5 +26,8 @@ public void retrieveData(){
    public void addWater(int ammount){
 
    persistence.addWater(ammount);
+
    }
+
+
 }
