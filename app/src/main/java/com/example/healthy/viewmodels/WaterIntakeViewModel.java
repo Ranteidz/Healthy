@@ -13,10 +13,10 @@ public class WaterIntakeViewModel extends ViewModel {
 
     private MutableLiveData<Integer> waterProgress = new MutableLiveData<>();
     private MutableLiveData<Boolean> isFinished = new MutableLiveData<>();
-    private WaterRepository waterRepository;
+
 
     public WaterIntakeViewModel() {
-    /*    waterRepository = WaterRepository.getInstance();*/
+
     }
 
     public LiveData<Integer> getWaterProgressForToday() {

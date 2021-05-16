@@ -43,7 +43,7 @@ public class FastingViewModel extends ViewModel {
         }.start();
     }
 
-    public void addFast(int hours) {
+    public void addFast(int hours,String UID) {
         Calendar currentTime = Calendar.getInstance();
         currentTime.setTime(new Date());
 
@@ -53,7 +53,7 @@ public class FastingViewModel extends ViewModel {
 
         FastingProgress fastingProgress = new FastingProgress(currentTime.getTimeInMillis(),futureTime.getTimeInMillis());
 
-        FastRepository.getInstance().addFast(fastingProgress);
+        FastRepository.getInstance().addFast(fastingProgress,UID);
         isRunning.setValue(true);
     }
 

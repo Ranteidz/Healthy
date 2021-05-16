@@ -30,8 +30,8 @@ public class FastRepository {
         return instance;
     }
 
-    public void addFast(FastingProgress fastingProgress){
-        fastingDAO.addFast(fastingProgress);
+    public void addFast(FastingProgress fastingProgress,String UID){
+        fastingDAO.addFast(fastingProgress,UID);
     }
     public LiveData<ArrayList<FastingProgress>> getAllFasts(){
        return fastingDAO.getAllFasts();

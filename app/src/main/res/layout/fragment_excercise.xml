@@ -4,21 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ExerciseFragment"
-    android:background="@color/teal_200">
+    android:background="@color/white"
+    tools:context=".fragments.ExerciseFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tvFirstFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Excercise Fragment"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="410dp"
+        android:layout_height="206dp"
+        android:src="@drawable/exercise"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="523dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Boxing workout. 2 sets each"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                ></TextView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:src="@drawable/boxworkout"></ImageView>
+
+            <Button
+                android:id="@+id/addBoxWorkout"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Boxing workout" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Abs workout. 2 sets each"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                ></TextView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:src="@drawable/absworkout"></ImageView>
+            <Button
+                android:id="@+id/addAbsWorkout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add abs workout" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Warmup workout. 2 sets each"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                ></TextView>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:src="@drawable/warmupworkout"></ImageView>
+            <Button
+                android:id="@+id/addWarmUpWorkout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add warmup workout" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

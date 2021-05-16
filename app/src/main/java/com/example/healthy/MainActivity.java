@@ -90,7 +90,7 @@ public class MainActivity extends BaseNav {
     public void updateUI(FirebaseUser firebaseUser){
 
         startActivity(new Intent(this,Home.class));
-        Log.println(Log.INFO,"Test",firebaseUser.getDisplayName());
+
     }
 
     public void SignUpPressed(View view) {

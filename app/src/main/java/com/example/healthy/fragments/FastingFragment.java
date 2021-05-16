@@ -16,6 +16,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.healthy.R;
 import com.example.healthy.viewmodels.FastingViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class FastingFragment extends Fragment implements View.OnClickListener {
 
@@ -26,6 +28,8 @@ public class FastingFragment extends Fragment implements View.OnClickListener {
     private View view;
     private TextView timeRemaining;
     private FastingViewModel fastingViewModel;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +40,9 @@ public class FastingFragment extends Fragment implements View.OnClickListener {
        startButton = view.findViewById(R.id.fasting_add_button);
        timeRemaining = view.findViewById(R.id.fasting_info);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
        startButton.setOnClickListener(this);
 
        return view;
@@ -44,6 +51,7 @@ public class FastingFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         fastingViewModel = new ViewModelProvider(this).get(FastingViewModel.class);
+
         super.onCreate(savedInstanceState);
     }
 
@@ -53,10 +61,10 @@ public class FastingFragment extends Fragment implements View.OnClickListener {
 
 
         if(radioID == R.id.fasting_rb_8hours){
-            fastingViewModel.addFast(8);
+            fastingViewModel.addFast(8,firebaseUser.getUid());
         }
         else if(radioID == R.id.fasting_rb_16hours){
-            fastingViewModel.addFast(16);
+            fastingViewModel.addFast(16,firebaseUser.getUid());
         }
     }
 }
