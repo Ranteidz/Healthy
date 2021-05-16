@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -88,7 +89,18 @@ public class CreateAccount extends AppCompatActivity {
         fastingProgresses.add(fastingProgress);
 
         createAccountButton.setOnClickListener((v -> {
-            if(name.getText().toString() !=null && password.getText().toString() !=null && confirmPassword.getText().toString() !=null && email.getText().toString() !=null){
+            if(name.getText().toString().isEmpty() || password.getText().toString().isEmpty() || confirmPassword.getText().toString().isEmpty() || email.getText().toString().isEmpty()) {
+                Context context =getApplicationContext();
+                Toast toast = Toast.makeText(context,"Fill all the fields",Toast.LENGTH_SHORT);
+                toast.show();
+                return;
+            }
+            if (!password.getText().toString().equals(confirmPassword.getText().toString())) {
+                Context context =getApplicationContext();
+                Toast toast = Toast.makeText(context,"Passwords don't match",Toast.LENGTH_SHORT);
+                toast.show();
+                return;
+            }else {
 
                 aName = name.getText().toString();
                 aEmail = email.getText().toString();
