@@ -18,9 +18,12 @@ import com.example.healthy.activities.settings.Help;
 import com.example.healthy.activities.settings.Notifications;
 import com.example.healthy.activities.settings.Profile;
 import com.example.healthy.activities.settings.Settings;
+import com.example.healthy.model.Model;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class BaseNav extends AppCompatActivity  {
+
 
 
     @Override
@@ -58,6 +61,8 @@ public class BaseNav extends AppCompatActivity  {
                 startActivity(new Intent(context, About.class));
                 return true;
             case R.id.logoutMenu:
+                FirebaseAuth.getInstance().signOut();
+              /*  Model.getInstance().signOut();*/
                 startActivity(new Intent(context, MainActivity.class));
                 return true;
 

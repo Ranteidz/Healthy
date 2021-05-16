@@ -1,23 +1,20 @@
 package com.example.healthy.models;
 
 public class ExerciseProgress {
-    private String type;
+
     private String date;
     private String name;
 
-    public ExerciseProgress(String type, String date, String name) {
-        this.type = type;
+    public ExerciseProgress(){
+
+    }
+
+    public ExerciseProgress( String date, String name) {
+
         this.date = date;
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public String getDate() {
         return date;

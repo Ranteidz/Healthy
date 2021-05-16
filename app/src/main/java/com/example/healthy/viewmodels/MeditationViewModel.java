@@ -1,20 +1,18 @@
 package com.example.healthy.viewmodels;
 
-import android.media.MediaPlayer;
-import android.os.CountDownTimer;
-import android.util.Log;
 
+import android.os.CountDownTimer;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.healthy.persistence.Persistence;
-
+import com.example.healthy.models.MeditationProgress;
+import com.example.healthy.repositories.MeditationRepository;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class MeditationViewModel extends ViewModel {
-    Persistence persistence;
-    MediaPlayer mediaPlayer;
+
+
 
 
     private MutableLiveData<String> timer = new MutableLiveData<>();
@@ -37,7 +35,7 @@ public class MeditationViewModel extends ViewModel {
     }
 
 
-    public void startTimer(long timeInMillis, boolean isBellOn) {
+    public void startTimer(long timeInMillis, boolean isBellOn,String UID) {
 
 
         isFinished.setValue(false);
@@ -59,7 +57,8 @@ public class MeditationViewModel extends ViewModel {
                     if (isBellOn) {
                         isFinished.setValue(true);
                     }
-                    //TODO add persistence
+                    MeditationProgress tmp = new MeditationProgress(java.time.LocalDate.now().toString(), TimeUnit.MILLISECONDS.toMinutes(timeInMillis));
+                    MeditationRepository.getInstance().addMeditation(tmp,UID);
 
 
                 }

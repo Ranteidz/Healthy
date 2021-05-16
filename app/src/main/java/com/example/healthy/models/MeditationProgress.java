@@ -3,33 +3,27 @@ package com.example.healthy.models;
 import java.util.Date;
 
 public class MeditationProgress {
-    private String type;
-    private Date date;
-    private int duration;
+  private String date;
+  private long duration;
 
-    public MeditationProgress(String type, Date date, int duration) {
-        this.type = type;
+  public MeditationProgress(){
+
+  }
+
+    public MeditationProgress(String date, long duration) {
         this.date = date;
         this.duration = duration;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public int getDuration() {
+    public long getDuration() {
         return duration;
     }
 

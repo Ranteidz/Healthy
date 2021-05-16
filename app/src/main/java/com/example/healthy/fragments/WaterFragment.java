@@ -47,7 +47,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
         addButton.setOnClickListener(this);
         waterViewModel = new ViewModelProvider(this).get(WaterIntakeViewModel.class);
 
-        waterViewModel.getWaterProgress().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+        waterViewModel.getWaterProgressForToday().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
 

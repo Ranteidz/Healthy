@@ -20,6 +20,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.healthy.R;
 import com.example.healthy.viewmodels.MeditationViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MeditationFragment extends Fragment implements View.OnClickListener {
 
@@ -31,6 +33,8 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
     ImageButton startButton;
     ImageButton pauseButton;
     MeditationViewModel meditationViewModel;
+    FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth;
 
 
     MediaPlayer player;
@@ -50,7 +54,8 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
         startButton.setOnClickListener(this);
         pauseButton.setOnClickListener(this);
         aSwitch.setOnClickListener(this);
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser= firebaseAuth.getCurrentUser();
         return view;
 
     }
@@ -108,13 +113,13 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
 
             case R.id.meditation_start_button:
                 if (radioID == R.id.meditaion_radio_5min) {
-                    meditationViewModel.startTimer(10000, aSwitch.isChecked());
+                    meditationViewModel.startTimer(10000, aSwitch.isChecked(),firebaseUser.getUid());
                     return;
                 } else if (radioID == R.id.meditaion_radio_10min) {
-                    meditationViewModel.startTimer(600000, aSwitch.isChecked());
+                    meditationViewModel.startTimer(600000, aSwitch.isChecked(),firebaseUser.getUid());
                     return;
                 } else if (radioID == R.id.meditaion_radio_15min) {
-                    meditationViewModel.startTimer(900000, aSwitch.isChecked());
+                    meditationViewModel.startTimer(900000, aSwitch.isChecked(),firebaseUser.getUid());
                     return;
                 }
             case R.id.meditation_pause_button:

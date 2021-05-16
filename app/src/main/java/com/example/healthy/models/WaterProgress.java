@@ -3,37 +3,27 @@ package com.example.healthy.models;
 import java.util.Date;
 
 public class WaterProgress {
-    private String type;
-    private Date date;
-    private int waterIntake;
+   private String date;
+   private int ammount;
 
-    public WaterProgress(String type, Date date, int waterIntake) {
-        this.type = type;
+    public WaterProgress(String date, int ammount) {
         this.date = date;
-        this.waterIntake = waterIntake;
+        this.ammount = ammount;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public int getWaterIntake() {
-        return waterIntake;
+    public int getAmmount() {
+        return ammount;
     }
 
-    public void setWaterIntake(int waterIntake) {
-        this.waterIntake = waterIntake;
+    public void setAmmount(int ammount) {
+        this.ammount = ammount;
     }
 }

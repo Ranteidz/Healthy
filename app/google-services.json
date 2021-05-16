@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "512307940575",
+    "firebase_url": "https://healthy-and-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "healthy-and",
+    "storage_bucket": "healthy-and.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512307940575:android:9424f1de58fbed321c6d6a",
+        "android_client_info": {
+          "package_name": "com.example.healthy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512307940575-s1v11h4ntqq8hsd9jhkavmnud3iei2a3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6CB-ZOalE3Ik0MmNm95ADioyxQ7ttI9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512307940575-s1v11h4ntqq8hsd9jhkavmnud3iei2a3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,37 +3,35 @@ package com.example.healthy.models;
 import java.util.Date;
 
 public class FastingProgress {
-    private String type;
-    private Date startDate;
-    private Date endDate;
 
-    public FastingProgress(String type, Date startDate, Date endDate) {
-        this.type = type;
+    private long startDate;
+    private long endDate;
+
+    public FastingProgress(){
+
+    }
+
+    public FastingProgress(long startDate, long endDate) {
+
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public String getType() {
-        return type;
-    }
 
-    public void setType(String type) {
-        this.type = type;
-    }
 
-    public Date getStartDate() {
+    public long getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(long startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public long getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(long endDate) {
         this.endDate = endDate;
     }
 }
