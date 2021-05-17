@@ -1,12 +1,14 @@
 package com.example.healthy.repositories;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.healthy.dao.FastingDAO;
 import com.example.healthy.dao.UserDAO;
 import com.example.healthy.models.FastingProgress;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FastRepository {
 
@@ -33,7 +35,7 @@ public class FastRepository {
     public void addFast(FastingProgress fastingProgress,String UID){
         fastingDAO.addFast(fastingProgress,UID);
     }
-    public LiveData<ArrayList<FastingProgress>> getAllFasts(){
+    public MutableLiveData<List<FastingProgress>> getAllFasts(){
        return fastingDAO.getAllFasts();
     }
     public LiveData<FastingProgress> getCurrentFasting(){
