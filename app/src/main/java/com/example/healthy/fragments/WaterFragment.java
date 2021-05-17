@@ -77,7 +77,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
                 waterViewModel.addWater(500);
 
             }
-            
+
         }
 
     }

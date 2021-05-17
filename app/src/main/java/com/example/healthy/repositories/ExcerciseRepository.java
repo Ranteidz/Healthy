@@ -1,12 +1,14 @@
 package com.example.healthy.repositories;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.healthy.dao.ExerciseDAO;
 import com.example.healthy.dao.UserDAO;
 import com.example.healthy.models.ExerciseProgress;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ExcerciseRepository {
 
@@ -35,7 +37,7 @@ public class ExcerciseRepository {
 
         exerciseDAO.addExercise(exerciseProgress);
     }
-    public LiveData<ArrayList<ExerciseProgress>> getAllExerciseProgress(){
+    public MutableLiveData<List<ExerciseProgress>> getAllExerciseProgress(){
        return exerciseDAO.getAllExerciseProgress();
     }
 
