@@ -33,7 +33,7 @@ public class MeditationDAO {
     private static Object lock = new Object();
 
 
-    public MeditationDAO(){
+    public MeditationDAO() {
         reference = database.getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         meditationProgressList = new MutableLiveData<>();
@@ -43,22 +43,21 @@ public class MeditationDAO {
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 List<MeditationProgress> tmpList = new ArrayList<>();
 
-                try{
+                try {
                     DataSnapshot snapshot1;
                     Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
 
-                    while (null != (snapshot1 = iterator.next())){
+                    while (null != (snapshot1 = iterator.next())) {
                         MeditationProgress meditationProgress = snapshot1.getValue(MeditationProgress.class);
                         tmpList.add(meditationProgress);
                     }
 
 
-
-                }catch (Exception e){
-
+                } catch (Exception e) {
+                    Log.println(Log.ERROR, "Firebase", e.getMessage());
                 }
 
-                Log.println(Log.INFO,"test",String.valueOf(tmpList.size()));
+
                 meditationProgressList.setValue(tmpList);
             }
 
@@ -71,9 +70,9 @@ public class MeditationDAO {
 
 
     public static MeditationDAO getInstance() {
-        if(instance ==null){
-            synchronized (lock){
-                if(instance ==null){
+        if (instance == null) {
+            synchronized (lock) {
+                if (instance == null) {
                     instance = new MeditationDAO();
                 }
             }
@@ -81,7 +80,7 @@ public class MeditationDAO {
         return instance;
     }
 
-    public void addMeditation(MeditationProgress meditationProgress,String UID) {
+    public void addMeditation(MeditationProgress meditationProgress, String UID) {
 
 
         reference.child("users").child(UID).child("meditationProgresses").push().setValue(meditationProgress);
@@ -91,7 +90,5 @@ public class MeditationDAO {
         return meditationProgressList;
     }
 
-    public LiveData<Integer> getTotalMinutesMeditated() {
-        return null;
-    }
+
 }

@@ -51,10 +51,13 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onChanged(Integer integer) {
 
-                if (integer == 0) {
-                    //TODO texview
-                } else
-                    progressBar.setProgress((integer * 100) / 2000);
+
+                progressBar.setProgress((integer * 100) / 2000);
+                if (integer == 2000) {
+                    Context context = getActivity().getApplicationContext();
+                    Toast toast = Toast.makeText(context, "Good job staying hydrated! Come back tomorrow to track your water progress", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
         return view;
@@ -74,9 +77,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
                 waterViewModel.addWater(500);
 
             }
-
-            //TODO recalculate
-
+            
         }
 
     }

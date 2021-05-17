@@ -1,5 +1,7 @@
 package com.example.healthy.dao;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -14,6 +16,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class WaterDAO {
@@ -30,18 +35,33 @@ public class WaterDAO {
         reference = database.getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         waterProgressList = new MutableLiveData<>();
-/*
         reference.child("users").child(firebaseAuth.getUid()).child("waterProgresses").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                waterProgressList
+                List<WaterProgress> tmpList = new ArrayList<>();
+
+                try {
+                    DataSnapshot snapshot1;
+                    Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
+
+
+                    while(null != (snapshot1 = iterator.next())){
+                        WaterProgress waterProgress = snapshot1.getValue(WaterProgress.class);
+                        tmpList.add(waterProgress);
+                    }
+                }
+                catch (Exception e){
+                    Log.println(Log.ERROR,"Firebase",e.getMessage());
+                }
+                waterProgressList.setValue(tmpList);
+
             }
 
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
             }
-        })*/
+        });
     }
 
     public static WaterDAO getInstance() {
@@ -64,11 +84,8 @@ public class WaterDAO {
         return null;
     }
 
-    public LiveData<List<WaterProgress>> getAllWaterProgress() {
-        return null;
+    public MutableLiveData<List<WaterProgress>> getAllWaterProgress() {
+        return waterProgressList;
     }
 
-    public LiveData<Integer> getTotalDaysHydrated() {
-        return null;
-    }
 }

@@ -6,6 +6,10 @@ public class WaterProgress {
    private String date;
    private int ammount;
 
+   public WaterProgress(){
+
+   }
+
     public WaterProgress(String date, int ammount) {
         this.date = date;
         this.ammount = ammount;

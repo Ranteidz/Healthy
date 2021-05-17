@@ -41,8 +41,6 @@ public class MeditationRepository {
 
         return meditationDAO.getAllMeditationProgress();
     }
-    public LiveData<Integer> getTotalMinutesMeditated(){
-        return meditationDAO.getTotalMinutesMeditated();
-    }
+
 
 }

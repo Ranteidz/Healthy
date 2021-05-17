@@ -52,7 +52,6 @@
         android:layout_width="262dp"
         android:layout_height="89dp"
         android:layout_marginTop="129dp"
-        android:progress="25"
         android:progressBackgroundTint="#757373"
         android:progressTint="@color/alternate_logo_colour"
         app:layout_constraintEnd_toEndOf="parent"

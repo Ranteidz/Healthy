@@ -8,20 +8,33 @@ import com.example.healthy.models.WaterProgress;
 
 import com.example.healthy.repositories.WaterRepository;
 
+import java.util.List;
+
 public class WaterIntakeViewModel extends ViewModel {
 
 
-    private MutableLiveData<Integer> waterProgress = new MutableLiveData<>();
+    private MutableLiveData<List<WaterProgress>> waterProgressesList;
+    private MutableLiveData<Integer> waterProgress ;
     private MutableLiveData<Boolean> isFinished = new MutableLiveData<>();
 
 
     public WaterIntakeViewModel() {
+        waterProgress= new MutableLiveData<>(0);
+        waterProgressesList = WaterRepository.getInstance().getAllWaterProgress();
+        waterProgressesList.observeForever(list -> {
+            waterProgress.setValue(0);
+            for (WaterProgress item: list
+                 ) {
+                if(item.getDate().equals(java.time.LocalDate.now().toString())){
+                    waterProgress.setValue(waterProgress.getValue()+ item.getAmmount());
+                }
+            }
 
+        });
     }
 
     public LiveData<Integer> getWaterProgressForToday() {
-        /*return WaterRepository.getInstance().getWaterProgressForToday();*/
-        waterProgress.setValue(1500);
+
         return waterProgress;
 
 
