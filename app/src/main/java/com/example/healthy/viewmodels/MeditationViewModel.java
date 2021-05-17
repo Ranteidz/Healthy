@@ -19,11 +19,13 @@ public class MeditationViewModel extends ViewModel {
     private MutableLiveData<Boolean> isSwitched = new MutableLiveData<>();
     private MutableLiveData<Boolean> isFinished = new MutableLiveData<>(false);
     private CountDownTimer countDownTimer;
+    private MeditationRepository meditationRepository;
     private Boolean isRunning;
     private static long time;
 
     public MeditationViewModel() {
         this.isRunning = false;
+        meditationRepository = MeditationRepository.getInstance();
     }
 
     public LiveData<Boolean> getIsSwitched() {

@@ -1,12 +1,14 @@
 package com.example.healthy.repositories;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.healthy.dao.MeditationDAO;
 import com.example.healthy.dao.UserDAO;
 import com.example.healthy.models.MeditationProgress;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MeditationRepository {
 
@@ -35,7 +37,7 @@ public class MeditationRepository {
 
         meditationDAO.addMeditation(meditationProgress,UID);
     }
-    public LiveData<ArrayList<MeditationProgress>> getAllMeditationProgress(){
+    public MutableLiveData<List<MeditationProgress>> getAllMeditationProgress(){
 
         return meditationDAO.getAllMeditationProgress();
     }

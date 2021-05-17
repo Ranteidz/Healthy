@@ -1,16 +1,24 @@
 package com.example.healthy.dao;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.healthy.models.WaterProgress;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 public class WaterDAO {
 
+    private MutableLiveData<List<WaterProgress>> waterProgressList;
     private DatabaseReference reference;
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -21,6 +29,19 @@ public class WaterDAO {
     private WaterDAO() {
         reference = database.getReference();
         firebaseAuth = FirebaseAuth.getInstance();
+        waterProgressList = new MutableLiveData<>();
+/*
+        reference.child("users").child(firebaseAuth.getUid()).child("waterProgresses").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                waterProgressList
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        })*/
     }
 
     public static WaterDAO getInstance() {
