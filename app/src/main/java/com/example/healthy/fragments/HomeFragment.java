@@ -28,6 +28,8 @@ public class HomeFragment extends Fragment {
     TextView fastCompleted;
     TextView minuteMeditatedValue;
     TextView exercisesCompletedValue;
+    TextView daysHydratedValue;
+    TextView fastCompletedValue;
     RecyclerView recyclerView;
     HistoryItemAdapter historyItemAdapter;
     HomeViewModel homeViewModel;
@@ -42,6 +44,8 @@ public class HomeFragment extends Fragment {
         fastCompleted = view.findViewById(R.id.home_fasts_completed);
         minuteMeditatedValue = view.findViewById(R.id.home_minutes_meditated_value);
         exercisesCompletedValue = view.findViewById(R.id.home_excercises_completed_value);
+        daysHydratedValue = view.findViewById(R.id.home_hydrated_days_value);
+        fastCompletedValue = view.findViewById(R.id.home_fasts_completed_value);
         recyclerView = view.findViewById(R.id.historyRv);
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -82,6 +86,9 @@ public class HomeFragment extends Fragment {
         });
         homeViewModel.getExercisesCompleted().observe(this, completed->{
             exercisesCompletedValue.setText(String.valueOf(completed));
+        });
+        homeViewModel.getDaysHydrated().observe(this, daysHydrated->{
+            daysHydratedValue.setText(String.valueOf(daysHydrated));
         });
         super.onCreate(savedInstanceState);
     }
