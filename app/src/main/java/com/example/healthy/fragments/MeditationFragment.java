@@ -110,7 +110,7 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
 
             case R.id.meditation_start_button:
                 if (radioID == R.id.meditaion_radio_5min) {
-                    meditationViewModel.startTimer(10000, aSwitch.isChecked(),firebaseUser.getUid());
+                    meditationViewModel.startTimer(300000, aSwitch.isChecked(),firebaseUser.getUid());
                     return;
                 } else if (radioID == R.id.meditaion_radio_10min) {
                     meditationViewModel.startTimer(600000, aSwitch.isChecked(),firebaseUser.getUid());
