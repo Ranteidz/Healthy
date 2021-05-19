@@ -11,24 +11,24 @@ and the goal of "Healthy" is to combine the features of these apps and offer a o
 MoSCoW requirements :
 
     Must have :    
-    * Login page
-    * Profile creation (weight, height, physical activity, and such)
-    * Architecture that supports new activity introduction
-    * Water intake tracker, water consumption recomendations
-    * Meditation area - simple timer with a sound notification when the time passed
-    * Fasting area - user can select fast start/ fasting period and the app must calculate remaining time left
+    * Login page [✓]
+    * Profile creation (weight, height, physical activity, and such) [✓ - User can create an account, though additional information about the user will be implemented in future updates]
+    * Architecture that supports new activity introduction [✓]
+    * Water intake tracker, water consumption recommendations [✓]
+    * Meditation area - simple timer with a sound notification when the time passed [✓]
+    * Fasting area - user can select fast start/ fasting period and the app must calculate remaining time left [✓]
     
     Should have :    
-    * Excercise area - simple exercise routines with pictures explaining exercises and recommended repetitions
-    * Calendar to track activities 
-    * Features learned in the course 
+    * Excercise area - simple exercise routines with pictures explaining exercises and recommended repetitions [✓]
+    * Calendar to track activities [X - Calendar is in the view but tracking history by date is not implemented, instead option to get all history by activity was implemented]
+    * Features learned in the course [✓ - to an extent]
     
     Could have : 
-    * Progress saving in the cloud
-    * Videos from Youtube explaining the benefits of habits/ healthy habits
-    * For exercises to allow the user to take a picture for before/after progress tracking
-    * Achievements and daily login rewards
-    * Skippable ads
+    * Progress saving in the cloud [✓ - all progress saved in Firebase]
+    * Videos from Youtube explaining the benefits of habits/ healthy habits [X]
+    * For exercises to allow the user to take a picture for before/after progress tracking [X - maybe in future updates]
+    * Achievements and daily login rewards [X]
+    * Skippable ads [X]
     
     Won't have :    
     * Ratings
@@ -36,4 +36,3 @@ MoSCoW requirements :
     * Social media account log in
     * Blogs
     
- Items listed above are subject to change.
