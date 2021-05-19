@@ -9,12 +9,12 @@ public class ExcerciseViewModel extends ViewModel {
 
     private ExcerciseRepository excerciseRepository;
 
-    public ExcerciseViewModel(){
-excerciseRepository = ExcerciseRepository.getInstance();
+    public ExcerciseViewModel() {
+        excerciseRepository = ExcerciseRepository.getInstance();
     }
 
     public void addExercise(String workoutName) {
-        ExerciseProgress exerciseProgress = new ExerciseProgress(java.time.LocalDate.now().toString(),workoutName);
+        ExerciseProgress exerciseProgress = new ExerciseProgress(java.time.LocalDate.now().toString(), workoutName);
         excerciseRepository.addExercise(exerciseProgress);
     }
 }

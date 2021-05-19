@@ -4,10 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.healthy.dao.ExerciseDAO;
-import com.example.healthy.dao.UserDAO;
 import com.example.healthy.models.ExerciseProgress;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExcerciseRepository {
@@ -17,15 +15,15 @@ public class ExcerciseRepository {
     private ExerciseDAO exerciseDAO;
 
 
-    private ExcerciseRepository(){
+    private ExcerciseRepository() {
         exerciseDAO = ExerciseDAO.getInstance();
     }
 
 
     public static ExcerciseRepository getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             synchronized (lock) {
-                if(instance == null) {
+                if (instance == null) {
                     instance = new ExcerciseRepository();
                 }
             }
@@ -33,19 +31,16 @@ public class ExcerciseRepository {
         return instance;
     }
 
-    public void addExercise(ExerciseProgress exerciseProgress){
+    public void addExercise(ExerciseProgress exerciseProgress) {
 
         exerciseDAO.addExercise(exerciseProgress);
     }
-    public MutableLiveData<List<ExerciseProgress>> getAllExerciseProgress(){
-       return exerciseDAO.getAllExerciseProgress();
+
+    public MutableLiveData<List<ExerciseProgress>> getAllExerciseProgress() {
+        return exerciseDAO.getAllExerciseProgress();
     }
 
-    public LiveData<Integer> getTotalExercisesCompleted(){
-        return exerciseDAO.getTotalExercisesCompleted();
-    }
-
-    public void removeListener(){
+    public void removeListener() {
         exerciseDAO.removeListener();
     }
 

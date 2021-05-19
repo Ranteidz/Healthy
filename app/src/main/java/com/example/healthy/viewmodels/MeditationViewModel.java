@@ -2,18 +2,18 @@ package com.example.healthy.viewmodels;
 
 
 import android.os.CountDownTimer;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
 import com.example.healthy.models.MeditationProgress;
 import com.example.healthy.repositories.MeditationRepository;
+
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class MeditationViewModel extends ViewModel {
-
-
-
 
     private MutableLiveData<String> timer = new MutableLiveData<>();
     private MutableLiveData<Boolean> isSwitched = new MutableLiveData<>();
@@ -37,7 +37,7 @@ public class MeditationViewModel extends ViewModel {
     }
 
 
-    public void startTimer(long timeInMillis, boolean isBellOn,String UID) {
+    public void startTimer(long timeInMillis, boolean isBellOn, String UID) {
 
 
         isFinished.setValue(false);
@@ -53,14 +53,12 @@ public class MeditationViewModel extends ViewModel {
 
                 @Override
                 public void onFinish() {
-
-
                     isRunning = false;
                     if (isBellOn) {
                         isFinished.setValue(true);
                     }
                     MeditationProgress tmp = new MeditationProgress(java.time.LocalDate.now().toString(), TimeUnit.MILLISECONDS.toMinutes(timeInMillis));
-                    meditationRepository.addMeditation(tmp,UID);
+                    meditationRepository.addMeditation(tmp, UID);
 
 
                 }
@@ -88,10 +86,6 @@ public class MeditationViewModel extends ViewModel {
 
     public void flipSwitch() {
         isSwitched.postValue(true);
-        /*
-        if (isSwitched.getValue()==false) {
-            isSwitched.postValue(true);
-        } else isSwitched.postValue(false);*/
     }
 
 

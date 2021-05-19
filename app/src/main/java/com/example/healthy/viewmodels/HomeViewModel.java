@@ -48,7 +48,7 @@ public class HomeViewModel extends ViewModel {
     public HomeViewModel() {
 
         fastRepository = FastRepository.getInstance();
-        meditationRepository  = MeditationRepository.getInstance();
+        meditationRepository = MeditationRepository.getInstance();
         excerciseRepository = ExcerciseRepository.getInstance();
         waterRepository = WaterRepository.getInstance();
 
@@ -75,7 +75,7 @@ public class HomeViewModel extends ViewModel {
 
     }
 
-    public void fastObserve(){
+    public void fastObserve() {
         fastingProgressesList.observeForever(list -> {
             fastsCompleted.setValue(0);
             fastingProgressesHistoryList.clear();
@@ -91,7 +91,7 @@ public class HomeViewModel extends ViewModel {
         });
     }
 
-    public void meditationObserve(){
+    public void meditationObserve() {
         meditationProgressesList.observeForever(list -> {
             meditationProgressesHistoryList.clear();
             minutesMeditated.setValue((long) 0);
@@ -125,7 +125,8 @@ public class HomeViewModel extends ViewModel {
             }
         });
     }
-    public void exerciseObserve(){
+
+    public void exerciseObserve() {
         exerciseProgressesList.observeForever(list -> {
             exercisesCompleted.setValue(0);
             exerciseProgressesHistoryList.clear();

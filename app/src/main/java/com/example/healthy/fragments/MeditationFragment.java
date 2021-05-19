@@ -35,10 +35,7 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
     MeditationViewModel meditationViewModel;
     FirebaseUser firebaseUser;
     FirebaseAuth firebaseAuth;
-
-
     MediaPlayer player;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,8 +61,8 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-
         meditationViewModel = new ViewModelProvider(this).get(MeditationViewModel.class);
+
         meditationViewModel.updateTimer().observeForever( new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -101,13 +98,11 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-
         super.onViewStateRestored(savedInstanceState);
     }
 
     @Override
     public void onClick(View v) {
-
         int radioID = radioGroup.getCheckedRadioButtonId();
         radioButton = view.findViewById(radioID);
 
@@ -132,7 +127,7 @@ public class MeditationFragment extends Fragment implements View.OnClickListener
                 toast2.show();
                 return;
             case R.id.meditation_switch:
-                /* play(getView());*/
+
                 return;
             default:
         }

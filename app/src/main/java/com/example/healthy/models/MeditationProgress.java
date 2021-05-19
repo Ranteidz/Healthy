@@ -3,12 +3,11 @@ package com.example.healthy.models;
 import java.util.Date;
 
 public class MeditationProgress {
-  private String date;
-  private long duration;
+    private String date;
+    private long duration;
 
-  public MeditationProgress(){
-
-  }
+    public MeditationProgress() {
+    }
 
     public MeditationProgress(String date, long duration) {
         this.date = date;

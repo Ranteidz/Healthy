@@ -3,12 +3,11 @@ package com.example.healthy.models;
 import java.util.Date;
 
 public class WaterProgress {
-   private String date;
-   private int ammount;
+    private String date;
+    private int ammount;
 
-   public WaterProgress(){
-
-   }
+    public WaterProgress() {
+    }
 
     public WaterProgress(String date, int ammount) {
         this.date = date;

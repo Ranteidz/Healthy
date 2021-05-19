@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -24,7 +23,6 @@ public class FastingFragment extends Fragment implements View.OnClickListener {
 
     private ProgressBar progressBar;
     private RadioGroup radioGroup;
-    private RadioButton radioButton;
     private Button startButton;
     private View view;
     private TextView timeRemaining;

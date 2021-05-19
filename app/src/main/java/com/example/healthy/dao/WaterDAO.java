@@ -87,9 +87,7 @@ public class WaterDAO {
 
     }
 
-    public LiveData<Integer> getWaterProgressForToday() {
-        return null;
-    }
+
 
     public MutableLiveData<List<WaterProgress>> getAllWaterProgress() {
         return waterProgressList;

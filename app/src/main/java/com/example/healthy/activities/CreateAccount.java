@@ -40,16 +40,12 @@ public class CreateAccount extends AppCompatActivity {
     EditText email;
     Button createAccountButton;
 
-    //To be deleted
+
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
 
     private String aName, aPassword, aEmail;
-    private ArrayList<WaterProgress> waterProgresses;
-    private ArrayList<ExerciseProgress> exerciseProgresses;
-    private ArrayList<MeditationProgress> meditationProgresses;
-    private ArrayList<FastingProgress> fastingProgresses;
     private User user;
     private String TAG = "RegisterActivity";
 

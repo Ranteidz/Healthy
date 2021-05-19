@@ -15,18 +15,17 @@ public class User {
     private ArrayList<FastingProgress> fastingProgresses;
 
     public User() {
-
     }
 
-    public User(String username){
+    public User(String username) {
         this.username = username;
     }
 
-    public User(String email, String password, String username,String test) {
-this.email = email;
-this.password = password;
-this.username = username;
-this.test =test;
+    public User(String email, String password, String username, String test) {
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.test = test;
     }
 
     public User(String email, String password, String username, ArrayList<WaterProgress> waterProgresses, ArrayList<ExerciseProgress> exerciseProgresses, ArrayList<MeditationProgress> meditationProgresses, ArrayList<FastingProgress> fastingProgresses) {

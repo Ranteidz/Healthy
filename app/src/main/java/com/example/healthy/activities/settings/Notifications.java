@@ -9,6 +9,9 @@ import com.example.healthy.R;
 import com.example.healthy.navigation.BaseNav;
 
 public class Notifications extends BaseNav {
+
+    //TODO implement in next major update
+
 Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

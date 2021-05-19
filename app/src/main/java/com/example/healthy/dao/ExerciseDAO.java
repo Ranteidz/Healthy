@@ -59,10 +59,6 @@ public class ExerciseDAO {
         return exerciseProgressesList;
     }
 
-    public LiveData<Integer> getTotalExercisesCompleted() {
-        return null;
-    }
-
     public void removeListener() {
         reference.removeEventListener(valueEventListener);
     }

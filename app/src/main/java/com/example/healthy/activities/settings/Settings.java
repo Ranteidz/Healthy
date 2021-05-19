@@ -10,6 +10,8 @@ import com.example.healthy.navigation.BaseNav;
 
 public class Settings extends BaseNav {
 
+    //TODO implement in next major update
+
     Toolbar toolbar;
 
     @Override

@@ -30,7 +30,7 @@ public class WaterRepository {
         return instance;
     }
 
-    public void init(){
+    public void init() {
         waterDAO.init();
     }
 
@@ -40,15 +40,11 @@ public class WaterRepository {
         waterDAO.addWater(waterProgress);
     }
 
-    public LiveData<Integer> getWaterProgressForToday() {
-        return waterDAO.getWaterProgressForToday();
-    }
-
     public MutableLiveData<List<WaterProgress>> getAllWaterProgress() {
         return waterDAO.getAllWaterProgress();
     }
 
-    public void removeListener(){
+    public void removeListener() {
         waterDAO.removeListener();
     }
 

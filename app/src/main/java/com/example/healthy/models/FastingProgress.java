@@ -7,16 +7,13 @@ public class FastingProgress {
     private long startDate;
     private long endDate;
 
-    public FastingProgress(){
-
+    public FastingProgress() {
     }
 
     public FastingProgress(long startDate, long endDate) {
-
         this.startDate = startDate;
         this.endDate = endDate;
     }
-
 
 
     public long getStartDate() {

@@ -57,14 +57,6 @@ public class FastingDAO {
         return fastingProgressesList;
     }
 
-    public LiveData<FastingProgress> getCurrentFasting() {
-        return null;
-    }
-
-    public LiveData<Integer> getFastsCompleted() {
-        return null;
-    }
-
     public void removeListener() {
         reference.removeEventListener(valueEventListener);
     }

@@ -18,9 +18,9 @@ public class Model {
     private static Object threadLock = new Object();
 
     public static Model getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             synchronized (threadLock) {
-                if(instance == null) {
+                if (instance == null) {
                     instance = new Model();
                 }
             }
@@ -28,15 +28,15 @@ public class Model {
         return instance;
     }
 
-    public Model(){
-userRepository = UserRepository.getInstance();
-fastRepository = FastRepository.getInstance();
-meditationRepository = MeditationRepository.getInstance();
-waterRepository = WaterRepository.getInstance();
-excerciseRepository = ExcerciseRepository.getInstance();
+    public Model() {
+        userRepository = UserRepository.getInstance();
+        fastRepository = FastRepository.getInstance();
+        meditationRepository = MeditationRepository.getInstance();
+        waterRepository = WaterRepository.getInstance();
+        excerciseRepository = ExcerciseRepository.getInstance();
     }
 
-    public void init(){
+    public void init() {
         excerciseRepository.init();
         userRepository.init();
         fastRepository.init();
@@ -44,7 +44,14 @@ excerciseRepository = ExcerciseRepository.getInstance();
         waterRepository.init();
     }
 
-    public void signOut(){
+    public void removeListeners() {
+        excerciseRepository.removeListener();
+        fastRepository.removeListener();
+        meditationRepository.removeListener();
+        waterRepository.removeListener();
+    }
+
+    public void signOut() {
         userRepository.signOut();
     }
 }

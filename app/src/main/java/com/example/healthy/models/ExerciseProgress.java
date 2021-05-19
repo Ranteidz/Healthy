@@ -5,12 +5,10 @@ public class ExerciseProgress {
     private String date;
     private String name;
 
-    public ExerciseProgress(){
-
+    public ExerciseProgress() {
     }
 
-    public ExerciseProgress( String date, String name) {
-
+    public ExerciseProgress(String date, String name) {
         this.date = date;
         this.name = name;
     }

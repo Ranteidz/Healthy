@@ -33,6 +33,8 @@ public class FastingViewModel extends ViewModel {
         fastingProgressesList = fastRepository.getAllFasts();
         fastingProgressesList.observeForever(list -> {
             isCurrentlyFasting.setValue(false);
+
+            //Checking if there are any active fasts
             if (!list.isEmpty()) {
                 fastingProgress = list.get(list.size() - 1);
                 Calendar currentTime = Calendar.getInstance();
@@ -47,12 +49,9 @@ public class FastingViewModel extends ViewModel {
 
             }
         });
-
     }
 
     public void startTimer(long timeInMillis) {
-
-
         countDownTimer = new CountDownTimer(timeInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -89,8 +88,6 @@ public class FastingViewModel extends ViewModel {
 
 
     public LiveData<String> updateTimer() {
-
-
         timer.postValue(String.format("Time remaining for your fast: %02d:%02d:%02d", time / (1000 * 60 * 60),
                 (time % (1000 * 60 * 60)) / (1000 * 60),
                 ((time % (1000 * 60 * 60)) % (1000 * 60)) / 1000));

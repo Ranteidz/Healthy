@@ -2,15 +2,15 @@ package com.example.healthy.models;
 
 public class Item {
 
-private String activityType;
-private String date;
-private String information;
+    private String activityType;
+    private String date;
+    private String information;
 
-public Item(String activityType,String date,String information){
-    this.activityType = activityType;
-    this.date = date;
-    this.information = information;
-}
+    public Item(String activityType, String date, String information) {
+        this.activityType = activityType;
+        this.date = date;
+        this.information = information;
+    }
 
     public String getActivityType() {
         return activityType;

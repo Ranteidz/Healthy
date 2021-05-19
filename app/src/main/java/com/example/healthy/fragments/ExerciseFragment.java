@@ -32,7 +32,6 @@ public class ExerciseFragment extends Fragment implements View.OnClickListener {
         addBoxWButton.setOnClickListener(this);
         addWarmButton.setOnClickListener(this);
 
-
         return view;
     }
 

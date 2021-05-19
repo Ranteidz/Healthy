@@ -43,14 +43,12 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
         glassInfo = view.findViewById(R.id.tv_glass_remaining);
         addButton = (Button) view.findViewById(R.id.water_add_button);
 
-
         addButton.setOnClickListener(this);
         waterViewModel = new ViewModelProvider(this).get(WaterIntakeViewModel.class);
 
         waterViewModel.getWaterProgressForToday().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
-
 
                 progressBar.setProgress((integer * 100) / 2000);
                 if (integer == 2000) {
@@ -70,14 +68,11 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
         radioButton = view.findViewById(radioId);
 
         if (v.getId() == R.id.water_add_button) {
-
             if (radioButton == view.findViewById(R.id.water_rb_250ml)) {
                 waterViewModel.addWater(250);
             } else if (radioButton == view.findViewById(R.id.water_rb_500ml)) {
                 waterViewModel.addWater(500);
-
             }
-
         }
 
     }

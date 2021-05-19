@@ -1,7 +1,6 @@
 package com.example.healthy;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +13,6 @@ import android.widget.Toast;
 
 import com.example.healthy.activities.CreateAccount;
 import com.example.healthy.activities.Home;
-import com.example.healthy.activities.LoginP;
 import com.example.healthy.navigation.BaseNav;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,7 +27,7 @@ public class MainActivity extends BaseNav {
     private String aEmail;
     private String aPassword;
     private FirebaseAuth firebaseAuth;
-    private static final String TAG = "LoginPActivity";
+    private static final String TAG = "LoginActivity";
 
 
     @Override
@@ -42,28 +40,23 @@ public class MainActivity extends BaseNav {
         loginButton = findViewById(R.id.loginButton);
 
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() != null) {
-            updateUI(firebaseAuth.getCurrentUser());
-
-        }
+        checkIfSignedIn();
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 firebaseAuth.signOut();
+
                 if (email.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
                     Context context = getApplicationContext();
                     Toast toast = Toast.makeText(context, "Email or Password fields are empty", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
                 }
+
                 aEmail = email.getText().toString();
                 aPassword = password.getText().toString();
-
 
                 firebaseAuth.signInWithEmailAndPassword(aEmail, aPassword)
                         .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
@@ -80,27 +73,27 @@ public class MainActivity extends BaseNav {
                                     Toast.makeText(getApplicationContext(), "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
                                 }
-
-                                // ...
                             }
                         });
             }
         });
+    }
 
+    public void checkIfSignedIn(){
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        if (firebaseAuth.getCurrentUser() != null) {
+            updateUI(firebaseAuth.getCurrentUser());
+        }
     }
 
     @Override
     protected void onResume() {
-
         super.onResume();
-        if (firebaseAuth.getCurrentUser() != null) {
-            updateUI(firebaseAuth.getCurrentUser());
-
-        }
+       checkIfSignedIn();
     }
 
     public void updateUI(FirebaseUser firebaseUser) {
-
         if (firebaseUser != null) {
             startActivity(new Intent(this, Home.class));
             finish();
@@ -110,6 +103,6 @@ public class MainActivity extends BaseNav {
 
     public void SignUpPressed(View view) {
         startActivity(new Intent(this, CreateAccount.class));
-      
+
     }
 }
