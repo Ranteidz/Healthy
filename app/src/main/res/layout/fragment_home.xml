@@ -117,5 +117,18 @@
         app:layout_constraintStart_toEndOf="@+id/home_fasts_completed"
         app:layout_constraintTop_toBottomOf="@+id/home_excercises_completed" />
 
+    <TextView
+        android:id="@+id/home_clickOn_fields_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Click on above fields to get all history "
+        android:textColor="@color/logo_colour"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

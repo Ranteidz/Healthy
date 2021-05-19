@@ -28,6 +28,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     TextView exercisesCompletedValue;
     TextView daysHydratedValue;
     TextView fastCompletedValue;
+    TextView clickInfo;
     RecyclerView recyclerView;
     HistoryItemAdapter historyItemAdapter;
     HomeViewModel homeViewModel;
@@ -44,6 +45,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         exercisesCompletedValue = view.findViewById(R.id.home_excercises_completed_value);
         daysHydratedValue = view.findViewById(R.id.home_hydrated_days_value);
         fastCompletedValue = view.findViewById(R.id.home_fasts_completed_value);
+        clickInfo = view.findViewById(R.id.home_clickOn_fields_info);
         recyclerView = view.findViewById(R.id.historyRv);
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -57,6 +59,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         ArrayList<Item> itemListTest = new ArrayList<>();
         historyItemAdapter = new HistoryItemAdapter(itemListTest);
         recyclerView.setAdapter(historyItemAdapter);
+
 
         return view;
     }
@@ -84,18 +87,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.home_fasts_completed:
+                clickInfo.setVisibility(View.GONE);
                 historyItemAdapter = new HistoryItemAdapter(homeViewModel.getFastHistory());
                 recyclerView.setAdapter(historyItemAdapter);
                 return;
             case R.id.home_excercises_completed:
+                clickInfo.setVisibility(View.GONE);
                 historyItemAdapter = new HistoryItemAdapter(homeViewModel.getExerciseHistory());
                 recyclerView.setAdapter(historyItemAdapter);
                 return;
             case R.id.home_minutes_meditated:
+                clickInfo.setVisibility(View.GONE);
                 historyItemAdapter = new HistoryItemAdapter(homeViewModel.getMeditationHistory());
                 recyclerView.setAdapter(historyItemAdapter);
                 return;
             case R.id.home_hydrated_days:
+                clickInfo.setVisibility(View.GONE);
                 historyItemAdapter = new HistoryItemAdapter(homeViewModel.getWaterHistory());
                 recyclerView.setAdapter(historyItemAdapter);
                 return;
