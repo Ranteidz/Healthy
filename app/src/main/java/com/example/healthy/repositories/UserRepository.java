@@ -42,4 +42,7 @@ public class UserRepository {
         userDAO.signOut();
 
     }
+
+    public void init() {
+    }
 }

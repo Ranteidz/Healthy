@@ -84,6 +84,7 @@ public class LoginP extends AppCompatActivity {
 
         startActivity(new Intent(this,Home.class));
         Log.println(Log.INFO,"Test",firebaseUser.getDisplayName());
+
     }
 
     public void SignUpPressed(View view) {

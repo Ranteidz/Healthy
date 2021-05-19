@@ -25,13 +25,15 @@ public class FastingViewModel extends ViewModel {
     private static long time;
     private MutableLiveData<Boolean> isRunning = new MutableLiveData<>(false);
     private FastingProgress fastingProgress;
+    private FastRepository fastRepository;
 
     public FastingViewModel() {
+        fastRepository = FastRepository.getInstance();
         fastingProgress = null;
-        fastingProgressesList = FastRepository.getInstance().getAllFasts();
+        fastingProgressesList = fastRepository.getAllFasts();
         fastingProgressesList.observeForever(list -> {
             isCurrentlyFasting.setValue(false);
-            if (list != null) {
+            if (!list.isEmpty()) {
                 fastingProgress = list.get(list.size() - 1);
                 Calendar currentTime = Calendar.getInstance();
                 currentTime.setTime(new Date());
@@ -77,7 +79,7 @@ public class FastingViewModel extends ViewModel {
 
         FastingProgress fastingProgress = new FastingProgress(currentTime.getTimeInMillis(), futureTime.getTimeInMillis());
 
-        FastRepository.getInstance().addFast(fastingProgress, UID);
+        fastRepository.addFast(fastingProgress, UID);
         isRunning.setValue(true);
     }
 

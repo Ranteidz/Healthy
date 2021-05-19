@@ -17,14 +17,14 @@ public class UserDAO {
     private static UserDAO instance;
     private static Object lock = new Object();
 
-    public UserDAO(){
+    public UserDAO() {
 
     }
 
     public static UserDAO getInstance() {
-        if(instance ==null){
-            synchronized (lock){
-                if(instance ==null){
+        if (instance == null) {
+            synchronized (lock) {
+                if (instance == null) {
                     instance = new UserDAO();
                 }
             }

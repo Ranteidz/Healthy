@@ -30,6 +30,10 @@ public class WaterRepository {
         return instance;
     }
 
+    public void init(){
+        waterDAO.init();
+    }
+
 
     public void addWater(WaterProgress waterProgress) {
 

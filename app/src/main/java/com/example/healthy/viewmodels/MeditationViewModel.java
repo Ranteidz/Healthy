@@ -60,7 +60,7 @@ public class MeditationViewModel extends ViewModel {
                         isFinished.setValue(true);
                     }
                     MeditationProgress tmp = new MeditationProgress(java.time.LocalDate.now().toString(), TimeUnit.MILLISECONDS.toMinutes(timeInMillis));
-                    MeditationRepository.getInstance().addMeditation(tmp,UID);
+                    meditationRepository.addMeditation(tmp,UID);
 
 
                 }

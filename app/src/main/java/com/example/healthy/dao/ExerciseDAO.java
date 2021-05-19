@@ -32,26 +32,57 @@ public class ExerciseDAO {
     private static ExerciseDAO instance;
     private static Object lock = new Object();
 
-    public ExerciseDAO(){
-        reference =database.getReference();
+    public ExerciseDAO() {
+        reference = database.getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         exerciseProgressesList = new MutableLiveData<>();
 
+    }
+
+
+    public static ExerciseDAO getInstance() {
+        if (instance == null) {
+            synchronized (lock) {
+                if (instance == null) {
+                    instance = new ExerciseDAO();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public void addExercise(ExerciseProgress exerciseProgress) {
+        reference.child("users").child(firebaseAuth.getUid()).child("exerciseProgresses").push().setValue(exerciseProgress);
+    }
+
+    public MutableLiveData<List<ExerciseProgress>> getAllExerciseProgress() {
+        return exerciseProgressesList;
+    }
+
+    public LiveData<Integer> getTotalExercisesCompleted() {
+        return null;
+    }
+
+    public void removeListener() {
+        reference.removeEventListener(valueEventListener);
+    }
+
+
+    public void init() {
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 List<ExerciseProgress> tmpList = new ArrayList<>();
-                try{
+                try {
                     DataSnapshot snapshot1;
                     Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
 
-                    while (iterator.hasNext()){
+                    while (iterator.hasNext()) {
                         snapshot1 = iterator.next();
                         ExerciseProgress exerciseProgress = snapshot1.getValue(ExerciseProgress.class);
                         tmpList.add(exerciseProgress);
                     }
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     Log.println(Log.ERROR, "Firebase", e.getMessage());
                 }
 
@@ -65,36 +96,5 @@ public class ExerciseDAO {
         };
 
         reference.child("users").child(firebaseAuth.getUid()).child("exerciseProgresses").addValueEventListener(valueEventListener);
-
     }
-
-
-    public static ExerciseDAO getInstance() {
-        if(instance ==null){
-            synchronized (lock){
-                if(instance ==null){
-                    instance = new ExerciseDAO();
-                }
-            }
-        }
-        return instance;
-    }
-
-    public void addExercise(ExerciseProgress exerciseProgress) {
-        reference.child("users").child(firebaseAuth.getUid()).child("exerciseProgresses").push().setValue(exerciseProgress);
-    }
-
-    public MutableLiveData<List<ExerciseProgress>> getAllExerciseProgress() {
-       return exerciseProgressesList;
-    }
-
-    public LiveData<Integer> getTotalExercisesCompleted() {
-        return null;
-    }
-
-    public void removeListener(){
-    reference.removeEventListener(valueEventListener);
-    }
-
-
 }

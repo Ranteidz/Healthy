@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import com.example.healthy.MainActivity;
 import com.example.healthy.R;
 import com.example.healthy.models.ExerciseProgress;
 import com.example.healthy.models.FastingProgress;
@@ -95,7 +96,7 @@ public class CreateAccount extends AppCompatActivity {
     }
 
     public void Login(View view) {
-        startActivity(new Intent(this, LoginP.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 

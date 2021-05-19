@@ -43,7 +43,7 @@ public class MainActivity extends BaseNav {
 
 
         firebaseAuth = FirebaseAuth.getInstance();
-        if(firebaseAuth.getCurrentUser() !=null){
+        if (firebaseAuth.getCurrentUser() != null) {
             updateUI(firebaseAuth.getCurrentUser());
 
         }
@@ -55,14 +55,14 @@ public class MainActivity extends BaseNav {
             @Override
             public void onClick(View v) {
                 firebaseAuth.signOut();
-                if ( email.getText().toString().isEmpty() ||  password.getText().toString().isEmpty()){
-                    Context context =getApplicationContext();
-                    Toast toast = Toast.makeText(context,"Email or Password fields are empty",Toast.LENGTH_SHORT);
+                if (email.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
+                    Context context = getApplicationContext();
+                    Toast toast = Toast.makeText(context, "Email or Password fields are empty", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
                 }
                 aEmail = email.getText().toString();
-                aPassword= password.getText().toString();
+                aPassword = password.getText().toString();
 
 
                 firebaseAuth.signInWithEmailAndPassword(aEmail, aPassword)
@@ -91,22 +91,25 @@ public class MainActivity extends BaseNav {
 
     @Override
     protected void onResume() {
-        if(firebaseAuth.getCurrentUser() !=null){
+
+        super.onResume();
+        if (firebaseAuth.getCurrentUser() != null) {
             updateUI(firebaseAuth.getCurrentUser());
 
         }
-        super.onResume();
     }
 
-    public void updateUI(FirebaseUser firebaseUser){
+    public void updateUI(FirebaseUser firebaseUser) {
 
-    if(firebaseUser !=null) {
-        startActivity(new Intent(this, Home.class));
-    }
-    
+        if (firebaseUser != null) {
+            startActivity(new Intent(this, Home.class));
+            finish();
+        }
+
     }
 
     public void SignUpPressed(View view) {
-        startActivity(new Intent(this,CreateAccount.class));
+        startActivity(new Intent(this, CreateAccount.class));
+      
     }
 }

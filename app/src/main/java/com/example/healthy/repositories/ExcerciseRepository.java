@@ -48,4 +48,8 @@ public class ExcerciseRepository {
     public void removeListener(){
         exerciseDAO.removeListener();
     }
+
+    public void init() {
+        exerciseDAO.init();
+    }
 }

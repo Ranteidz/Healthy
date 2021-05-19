@@ -7,12 +7,14 @@ import com.example.healthy.repositories.ExcerciseRepository;
 
 public class ExcerciseViewModel extends ViewModel {
 
-    public ExcerciseViewModel(){
+    private ExcerciseRepository excerciseRepository;
 
+    public ExcerciseViewModel(){
+excerciseRepository = ExcerciseRepository.getInstance();
     }
 
     public void addExercise(String workoutName) {
         ExerciseProgress exerciseProgress = new ExerciseProgress(java.time.LocalDate.now().toString(),workoutName);
-        ExcerciseRepository.getInstance().addExercise(exerciseProgress);
+        excerciseRepository.addExercise(exerciseProgress);
     }
 }

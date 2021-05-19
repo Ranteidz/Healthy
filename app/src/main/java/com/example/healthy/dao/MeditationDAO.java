@@ -38,7 +38,36 @@ public class MeditationDAO {
         reference = database.getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         meditationProgressList = new MutableLiveData<>();
+    }
 
+
+    public static MeditationDAO getInstance() {
+        if (instance == null) {
+            synchronized (lock) {
+                if (instance == null) {
+                    instance = new MeditationDAO();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public void addMeditation(MeditationProgress meditationProgress, String UID) {
+
+
+        reference.child("users").child(UID).child("meditationProgresses").push().setValue(meditationProgress);
+    }
+
+    public MutableLiveData<List<MeditationProgress>> getAllMeditationProgress() {
+        return meditationProgressList;
+    }
+
+    public void removeListener() {
+        reference.removeEventListener(valueEventListener);
+    }
+
+
+    public void init() {
         valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
@@ -69,34 +98,5 @@ public class MeditationDAO {
             }
         };
         reference.child("users").child(firebaseAuth.getUid()).child("meditationProgresses").addValueEventListener(valueEventListener);
-
     }
-
-
-    public static MeditationDAO getInstance() {
-        if (instance == null) {
-            synchronized (lock) {
-                if (instance == null) {
-                    instance = new MeditationDAO();
-                }
-            }
-        }
-        return instance;
-    }
-
-    public void addMeditation(MeditationProgress meditationProgress, String UID) {
-
-
-        reference.child("users").child(UID).child("meditationProgresses").push().setValue(meditationProgress);
-    }
-
-    public MutableLiveData<List<MeditationProgress>> getAllMeditationProgress() {
-        return meditationProgressList;
-    }
-
-    public void removeListener(){
-        reference.removeEventListener(valueEventListener);
-    }
-
-
 }

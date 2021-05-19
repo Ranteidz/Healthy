@@ -48,4 +48,8 @@ public class FastRepository {
     public void removeListener(){
         fastingDAO.removeListener();
     }
+
+    public void init() {
+        fastingDAO.init();
+    }
 }

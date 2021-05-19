@@ -47,4 +47,7 @@ public class MeditationRepository {
     }
 
 
+    public void init() {
+        meditationDAO.init();
+    }
 }

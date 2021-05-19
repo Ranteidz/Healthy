@@ -16,11 +16,13 @@ public class WaterIntakeViewModel extends ViewModel {
     private MutableLiveData<List<WaterProgress>> waterProgressesList;
     private MutableLiveData<Integer> waterProgress ;
     private MutableLiveData<Boolean> isFinished = new MutableLiveData<>();
+    private WaterRepository waterRepository;
 
 
     public WaterIntakeViewModel() {
+        waterRepository = WaterRepository.getInstance();
         waterProgress= new MutableLiveData<>(0);
-        waterProgressesList = WaterRepository.getInstance().getAllWaterProgress();
+        waterProgressesList = waterRepository.getAllWaterProgress();
         waterProgressesList.observeForever(list -> {
             waterProgress.setValue(0);
             for (WaterProgress item: list
@@ -43,7 +45,7 @@ public class WaterIntakeViewModel extends ViewModel {
 
     public void addWater(int ammount) {
         WaterProgress tmp = new WaterProgress(java.time.LocalDate.now().toString(), ammount);
-        WaterRepository.getInstance().addWater(tmp);
+       waterRepository.addWater(tmp);
 
     }
 

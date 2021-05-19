@@ -40,25 +40,34 @@ public class HomeViewModel extends ViewModel {
 
     private Map<String, Integer> hashMap;
 
+    private FastRepository fastRepository;
+    private MeditationRepository meditationRepository;
+    private ExcerciseRepository excerciseRepository;
+    private WaterRepository waterRepository;
+
     public HomeViewModel() {
 
+        fastRepository = FastRepository.getInstance();
+        meditationRepository  = MeditationRepository.getInstance();
+        excerciseRepository = ExcerciseRepository.getInstance();
+        waterRepository = WaterRepository.getInstance();
 
         hashMap = new HashMap<>();
         //Meditation
         minutesMeditated = new MutableLiveData<Long>((long) 0);
-        meditationProgressesList = MeditationRepository.getInstance().getAllMeditationProgress();
+        meditationProgressesList = meditationRepository.getAllMeditationProgress();
 
         //Exercise
         exercisesCompleted = new MutableLiveData<>(0);
-        exerciseProgressesList = ExcerciseRepository.getInstance().getAllExerciseProgress();
+        exerciseProgressesList = excerciseRepository.getAllExerciseProgress();
 
         //Water
-        waterProgressesList = WaterRepository.getInstance().getAllWaterProgress();
+        waterProgressesList = waterRepository.getAllWaterProgress();
         daysHydrated = new MutableLiveData<>(0);
 
         //Fasting
         fastsCompleted = new MutableLiveData<>(0);
-        fastingProgressesList = FastRepository.getInstance().getAllFasts();
+        fastingProgressesList = fastRepository.getAllFasts();
         fastObserve();
         meditationObserve();
         exerciseObserve();
