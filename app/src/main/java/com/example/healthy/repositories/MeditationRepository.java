@@ -42,5 +42,9 @@ public class MeditationRepository {
         return meditationDAO.getAllMeditationProgress();
     }
 
+    public void removeListener(){
+        meditationDAO.removeListener();
+    }
+
 
 }

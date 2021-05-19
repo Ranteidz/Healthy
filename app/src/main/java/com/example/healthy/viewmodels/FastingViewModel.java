@@ -1,5 +1,6 @@
 package com.example.healthy.viewmodels;
 
+import android.annotation.SuppressLint;
 import android.os.CountDownTimer;
 
 import androidx.lifecycle.LiveData;
@@ -12,6 +13,7 @@ import com.example.healthy.repositories.FastRepository;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class FastingViewModel extends ViewModel {
@@ -35,6 +37,10 @@ public class FastingViewModel extends ViewModel {
                 currentTime.setTime(new Date());
                 if (currentTime.getTimeInMillis() < fastingProgress.getEndDate()) {
                     isCurrentlyFasting.setValue(true);
+                    Calendar timeNow = Calendar.getInstance();
+                    timeNow.setTime(new Date());
+                    long timeRemaining = Math.abs(fastingProgress.getEndDate() - timeNow.getTimeInMillis());
+                    startTimer(timeRemaining);
                 }
 
             }
@@ -42,10 +48,10 @@ public class FastingViewModel extends ViewModel {
 
     }
 
-    public void startTimer() {
+    public void startTimer(long timeInMillis) {
 
 
-        countDownTimer = new CountDownTimer(time, 1000) {
+        countDownTimer = new CountDownTimer(timeInMillis, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 time = millisUntilFinished;
@@ -56,6 +62,7 @@ public class FastingViewModel extends ViewModel {
             public void onFinish() {
 
                 isRunning.setValue(false);
+                isCurrentlyFasting.setValue(false);
             }
         }.start();
     }
@@ -74,17 +81,18 @@ public class FastingViewModel extends ViewModel {
         isRunning.setValue(true);
     }
 
-    public void checkIfFasting() {
-//TODO check if current time in millis < expected finish time in firebase
-        //TODO set boolean to true
-        //TODO if true get time remaining in millis and start timer
+    public LiveData<Boolean> getIsCurrentlyFasting() {
+        return isCurrentlyFasting;
     }
+
 
     public LiveData<String> updateTimer() {
 
-        timer.postValue(String.format("%02d:%02d:%02d", TimeUnit.DAYS.toHours(time), TimeUnit.MILLISECONDS.toMinutes(time) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(time)),
-                TimeUnit.MILLISECONDS.toSeconds(time) - TimeUnit.MINUTES.toSeconds(
-                        TimeUnit.MILLISECONDS.toMinutes(time))));
+
+        timer.postValue(String.format("Time remaining for your fast: %02d:%02d:%02d", time / (1000 * 60 * 60),
+                (time % (1000 * 60 * 60)) / (1000 * 60),
+                ((time % (1000 * 60 * 60)) % (1000 * 60)) / 1000));
+
         return timer;
     }
 }

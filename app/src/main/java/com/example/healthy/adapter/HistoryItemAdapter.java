@@ -1,5 +1,6 @@
 package com.example.healthy.adapter;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,20 @@ public class HistoryItemAdapter extends RecyclerView.Adapter<HistoryItemAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         holder.type.setText(historyItems.get(position).getActivityType());
+        switch (historyItems.get(position).getActivityType()){
+            case "Water":
+                holder.type.setBackgroundColor(Color.parseColor("#728EF0"));
+                break;
+            case "Exercise":
+                holder.type.setBackgroundColor(Color.parseColor("#fd0000"));
+                break;
+            case "Fasting":
+                holder.type.setBackgroundColor(Color.parseColor("#FFD700"));
+                break;
+            case "Meditation":
+                holder.type.setBackgroundColor(Color.parseColor("#d600ff"));
+                break;
+        }
         holder.date.setText(historyItems.get(position).getDate());
         holder.information.setText(historyItems.get(position).getInformation());
     }

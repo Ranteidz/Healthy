@@ -27,7 +27,7 @@ public class FastingDAO {
     private DatabaseReference reference;
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth firebaseAuth;
-    private FirebaseUser firebaseUser;
+ private ValueEventListener valueEventListener;
     private static FastingDAO instance;
     private static Object lock = new Object();
 
@@ -36,7 +36,7 @@ public class FastingDAO {
         firebaseAuth= FirebaseAuth.getInstance();
      fastingProgressesList = new MutableLiveData<>();
 
-     reference.child("users").child(firebaseAuth.getUid()).child("fastingProgresses").addValueEventListener(new ValueEventListener() {
+     valueEventListener = new ValueEventListener() {
          @Override
          public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
              List<FastingProgress> tmpList = new ArrayList<>();
@@ -44,7 +44,8 @@ public class FastingDAO {
                  DataSnapshot snapshot1;
                  Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
 
-                 while(null!=(snapshot1= iterator.next())){
+                 while(iterator.hasNext()){
+                     snapshot1 = iterator.next();
                      FastingProgress fastingProgress = snapshot1.getValue(FastingProgress.class);
                      tmpList.add(fastingProgress);
                  }
@@ -59,7 +60,11 @@ public class FastingDAO {
          public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
          }
-     });
+     };
+
+
+        reference.child("users").child(firebaseAuth.getUid()).child("fastingProgresses").addValueEventListener(valueEventListener);
+
 
     }
 
@@ -88,5 +93,9 @@ public class FastingDAO {
 
     public LiveData<Integer> getFastsCompleted() {
         return null;
+    }
+
+    public void removeListener(){
+        reference.removeEventListener(valueEventListener);
     }
 }

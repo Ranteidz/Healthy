@@ -44,4 +44,8 @@ public class FastRepository {
     public LiveData<Integer> getFastsCompleted(){
         return fastingDAO.getFastsCompleted();
     }
+
+    public void removeListener(){
+        fastingDAO.removeListener();
+    }
 }

@@ -51,8 +51,10 @@ public class MainActivity extends BaseNav {
 
         loginButton.setOnClickListener(new View.OnClickListener() {
 
+
             @Override
             public void onClick(View v) {
+                firebaseAuth.signOut();
                 if ( email.getText().toString().isEmpty() ||  password.getText().toString().isEmpty()){
                     Context context =getApplicationContext();
                     Toast toast = Toast.makeText(context,"Email or Password fields are empty",Toast.LENGTH_SHORT);
@@ -84,13 +86,24 @@ public class MainActivity extends BaseNav {
                         });
             }
         });
+
     }
 
+    @Override
+    protected void onResume() {
+        if(firebaseAuth.getCurrentUser() !=null){
+            updateUI(firebaseAuth.getCurrentUser());
+
+        }
+        super.onResume();
+    }
 
     public void updateUI(FirebaseUser firebaseUser){
 
-        startActivity(new Intent(this,Home.class));
-
+    if(firebaseUser !=null) {
+        startActivity(new Intent(this, Home.class));
+    }
+    
     }
 
     public void SignUpPressed(View view) {

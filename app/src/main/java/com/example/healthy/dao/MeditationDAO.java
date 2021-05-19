@@ -28,6 +28,7 @@ public class MeditationDAO {
     private DatabaseReference reference;
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth firebaseAuth;
+    private ValueEventListener valueEventListener;
 
     private static MeditationDAO instance;
     private static Object lock = new Object();
@@ -38,7 +39,7 @@ public class MeditationDAO {
         firebaseAuth = FirebaseAuth.getInstance();
         meditationProgressList = new MutableLiveData<>();
 
-        reference.child("users").child(firebaseAuth.getUid()).child("meditationProgresses").addValueEventListener(new ValueEventListener() {
+        valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 List<MeditationProgress> tmpList = new ArrayList<>();
@@ -47,7 +48,8 @@ public class MeditationDAO {
                     DataSnapshot snapshot1;
                     Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
 
-                    while (null != (snapshot1 = iterator.next())) {
+                    while (iterator.hasNext()) {
+                        snapshot1 = iterator.next();
                         MeditationProgress meditationProgress = snapshot1.getValue(MeditationProgress.class);
                         tmpList.add(meditationProgress);
                     }
@@ -65,7 +67,9 @@ public class MeditationDAO {
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
             }
-        });
+        };
+        reference.child("users").child(firebaseAuth.getUid()).child("meditationProgresses").addValueEventListener(valueEventListener);
+
     }
 
 
@@ -88,6 +92,10 @@ public class MeditationDAO {
 
     public MutableLiveData<List<MeditationProgress>> getAllMeditationProgress() {
         return meditationProgressList;
+    }
+
+    public void removeListener(){
+        reference.removeEventListener(valueEventListener);
     }
 
 

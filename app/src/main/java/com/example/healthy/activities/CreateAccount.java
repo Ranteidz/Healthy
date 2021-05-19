@@ -53,7 +53,6 @@ public class CreateAccount extends AppCompatActivity {
     private String TAG = "RegisterActivity";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,56 +65,39 @@ public class CreateAccount extends AppCompatActivity {
         email = findViewById(R.id.emailCreate);
         createAccountButton = findViewById(R.id.create_account_button);
 
-        //To be deleted
+
         database = FirebaseDatabase.getInstance();
         mDatabase = database.getReference("users");
         mAuth = FirebaseAuth.getInstance();
 
-        //Testing progresses
-        WaterProgress waterProgress = new WaterProgress(java.time.LocalDate.now().toString(),2500);
-        MeditationProgress meditationProgress = new MeditationProgress(java.time.LocalDate.now().toString(),5);
-        ExerciseProgress exerciseProgress = new ExerciseProgress(java.time.LocalDate.now().toString(),"back workout");
-        FastingProgress fastingProgress = new FastingProgress(java.time.Clock.systemDefaultZone().millis(),java.time.Clock.systemDefaultZone().millis());
-
-        //only for testing firebase
-        waterProgresses = new ArrayList<>();
-        exerciseProgresses = new ArrayList<>();
-        meditationProgresses = new ArrayList<>();
-        fastingProgresses = new ArrayList<>();
-
-        waterProgresses.add(waterProgress);
-        exerciseProgresses.add(exerciseProgress);
-        meditationProgresses.add(meditationProgress);
-        fastingProgresses.add(fastingProgress);
 
         createAccountButton.setOnClickListener((v -> {
-            if(name.getText().toString().isEmpty() || password.getText().toString().isEmpty() || confirmPassword.getText().toString().isEmpty() || email.getText().toString().isEmpty()) {
-                Context context =getApplicationContext();
-                Toast toast = Toast.makeText(context,"Fill all the fields",Toast.LENGTH_SHORT);
+            if (name.getText().toString().isEmpty() || password.getText().toString().isEmpty() || confirmPassword.getText().toString().isEmpty() || email.getText().toString().isEmpty()) {
+                Context context = getApplicationContext();
+                Toast toast = Toast.makeText(context, "Fill all the fields", Toast.LENGTH_SHORT);
                 toast.show();
                 return;
             }
             if (!password.getText().toString().equals(confirmPassword.getText().toString())) {
-                Context context =getApplicationContext();
-                Toast toast = Toast.makeText(context,"Passwords don't match",Toast.LENGTH_SHORT);
+                Context context = getApplicationContext();
+                Toast toast = Toast.makeText(context, "Passwords don't match", Toast.LENGTH_SHORT);
                 toast.show();
                 return;
-            }else {
+            } else {
 
                 aName = name.getText().toString();
                 aEmail = email.getText().toString();
                 aPassword = password.getText().toString();
-                user = new User(aEmail,aPassword,aName,waterProgresses,exerciseProgresses,meditationProgresses,fastingProgresses);
+                user = new User(aName);
                 registerUser();
             }
         }));
     }
 
     public void Login(View view) {
-        startActivity(new Intent(this,LoginP.class));
+        startActivity(new Intent(this, LoginP.class));
         finish();
     }
-
 
 
     public void registerUser() {

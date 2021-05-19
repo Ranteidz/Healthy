@@ -44,5 +44,9 @@ public class WaterRepository {
         return waterDAO.getAllWaterProgress();
     }
 
+    public void removeListener(){
+        waterDAO.removeListener();
+    }
+
 
 }

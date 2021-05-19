@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.healthy.R;
@@ -34,23 +35,37 @@ public class FastingFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       view = inflater.inflate(R.layout.fragment_fasting,container,false);
-       progressBar = view.findViewById(R.id.progressBar);
-       radioGroup = view.findViewById(R.id.fasting_radioGroup);
-       startButton = view.findViewById(R.id.fasting_add_button);
-       timeRemaining = view.findViewById(R.id.fasting_info);
+        view = inflater.inflate(R.layout.fragment_fasting, container, false);
+        progressBar = view.findViewById(R.id.progressBar);
+        radioGroup = view.findViewById(R.id.fasting_radioGroup);
+        startButton = view.findViewById(R.id.fasting_add_button);
+        timeRemaining = view.findViewById(R.id.fasting_info);
+        progressBar.setVisibility(View.GONE);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-       startButton.setOnClickListener(this);
+        startButton.setOnClickListener(this);
 
-       return view;
+        return view;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         fastingViewModel = new ViewModelProvider(this).get(FastingViewModel.class);
+        fastingViewModel.getIsCurrentlyFasting().observe(this, value -> {
+            if (value) {
+                radioGroup.setVisibility(View.GONE);
+                startButton.setVisibility(View.GONE);
+                progressBar.setVisibility(View.VISIBLE);
+                fastingViewModel.updateTimer().observeForever(new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+                        timeRemaining.setText(s);
+                    }
+                });
+            }
+        });
 
         super.onCreate(savedInstanceState);
     }
@@ -60,11 +75,10 @@ public class FastingFragment extends Fragment implements View.OnClickListener {
         int radioID = radioGroup.getCheckedRadioButtonId();
 
 
-        if(radioID == R.id.fasting_rb_8hours){
-            fastingViewModel.addFast(8,firebaseUser.getUid());
-        }
-        else if(radioID == R.id.fasting_rb_16hours){
-            fastingViewModel.addFast(16,firebaseUser.getUid());
+        if (radioID == R.id.fasting_rb_8hours) {
+            fastingViewModel.addFast(8, firebaseUser.getUid());
+        } else if (radioID == R.id.fasting_rb_16hours) {
+            fastingViewModel.addFast(16, firebaseUser.getUid());
         }
     }
 }

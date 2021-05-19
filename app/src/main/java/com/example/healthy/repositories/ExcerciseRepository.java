@@ -44,4 +44,8 @@ public class ExcerciseRepository {
     public LiveData<Integer> getTotalExercisesCompleted(){
         return exerciseDAO.getTotalExercisesCompleted();
     }
+
+    public void removeListener(){
+        exerciseDAO.removeListener();
+    }
 }

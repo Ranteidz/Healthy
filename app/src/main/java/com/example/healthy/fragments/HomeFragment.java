@@ -19,7 +19,7 @@ import com.example.healthy.viewmodels.HomeViewModel;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     View view;
     TextView minutedMeditated;
@@ -50,28 +50,13 @@ public class HomeFragment extends Fragment {
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        minutedMeditated.setOnClickListener(this);
+        fastCompleted.setOnClickListener(this);
+        daysHydrated.setOnClickListener(this);
+        exercisesDone.setOnClickListener(this);
+
 
         ArrayList<Item> itemListTest = new ArrayList<>();
-        itemListTest.add(new Item("baseball", "blablabla", "davinki"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-        itemListTest.add(new Item("baseball", "blablabla", "no completed"));
-
         historyItemAdapter = new HistoryItemAdapter(itemListTest);
         recyclerView.setAdapter(historyItemAdapter);
 
@@ -90,6 +75,32 @@ public class HomeFragment extends Fragment {
         homeViewModel.getDaysHydrated().observe(this, daysHydrated->{
             daysHydratedValue.setText(String.valueOf(daysHydrated));
         });
+        homeViewModel.getFastsCompleted().observe(this,daysFasted->{
+            fastCompletedValue.setText(String.valueOf(daysFasted));
+        });
+
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.home_fasts_completed:
+                historyItemAdapter = new HistoryItemAdapter(homeViewModel.getFastHistory());
+                recyclerView.setAdapter(historyItemAdapter);
+                return;
+            case R.id.home_excercises_completed:
+                historyItemAdapter = new HistoryItemAdapter(homeViewModel.getExerciseHistory());
+                recyclerView.setAdapter(historyItemAdapter);
+                return;
+            case R.id.home_minutes_meditated:
+                historyItemAdapter = new HistoryItemAdapter(homeViewModel.getMeditationHistory());
+                recyclerView.setAdapter(historyItemAdapter);
+                return;
+            case R.id.home_hydrated_days:
+                historyItemAdapter = new HistoryItemAdapter(homeViewModel.getWaterHistory());
+                recyclerView.setAdapter(historyItemAdapter);
+                return;
+        }
     }
 }

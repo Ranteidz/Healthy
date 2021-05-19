@@ -30,22 +30,24 @@ public class WaterDAO {
     private static WaterDAO instance;
     private static Object lock = new Object();
     private FirebaseAuth firebaseAuth;
+    private ValueEventListener valueEventListener;
 
     private WaterDAO() {
         reference = database.getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         waterProgressList = new MutableLiveData<>();
-        reference.child("users").child(firebaseAuth.getUid()).child("waterProgresses").addValueEventListener(new ValueEventListener() {
+        valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 List<WaterProgress> tmpList = new ArrayList<>();
-
+                DataSnapshot snapshot1;
                 try {
-                    DataSnapshot snapshot1;
+
                     Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
 
 
-                    while(null != (snapshot1 = iterator.next())){
+                    while(iterator.hasNext()){
+                        snapshot1 = iterator.next();
                         WaterProgress waterProgress = snapshot1.getValue(WaterProgress.class);
                         tmpList.add(waterProgress);
                     }
@@ -61,7 +63,9 @@ public class WaterDAO {
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
             }
-        });
+        };
+        reference.child("users").child(firebaseAuth.getUid()).child("waterProgresses").addValueEventListener(valueEventListener);
+
     }
 
     public static WaterDAO getInstance() {
@@ -86,6 +90,10 @@ public class WaterDAO {
 
     public MutableLiveData<List<WaterProgress>> getAllWaterProgress() {
         return waterProgressList;
+    }
+
+    public void removeListener(){
+        reference.removeEventListener(valueEventListener);
     }
 
 }

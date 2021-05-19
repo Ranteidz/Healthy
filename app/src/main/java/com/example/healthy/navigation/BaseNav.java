@@ -19,6 +19,11 @@ import com.example.healthy.activities.settings.Notifications;
 import com.example.healthy.activities.settings.Profile;
 import com.example.healthy.activities.settings.Settings;
 import com.example.healthy.model.Model;
+import com.example.healthy.models.WaterProgress;
+import com.example.healthy.repositories.ExcerciseRepository;
+import com.example.healthy.repositories.FastRepository;
+import com.example.healthy.repositories.MeditationRepository;
+import com.example.healthy.repositories.WaterRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -61,10 +66,17 @@ public class BaseNav extends AppCompatActivity  {
                 startActivity(new Intent(context, About.class));
                 return true;
             case R.id.logoutMenu:
+                finish();
+                ExcerciseRepository.getInstance().removeListener();
+                FastRepository.getInstance().removeListener();
+                MeditationRepository.getInstance().removeListener();
+                WaterRepository.getInstance().removeListener();
                 FirebaseAuth.getInstance().signOut();
-              /*  Model.getInstance().signOut();*/
-                startActivity(new Intent(context, MainActivity.class));
-                return true;
+
+
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+               return true;
 
             default:
                 return super.onOptionsItemSelected(item);

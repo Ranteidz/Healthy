@@ -26,6 +26,7 @@ public class ExerciseDAO {
     private DatabaseReference reference;
     private final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private FirebaseAuth firebaseAuth;
+    private ValueEventListener valueEventListener;
 
 
     private static ExerciseDAO instance;
@@ -36,7 +37,7 @@ public class ExerciseDAO {
         firebaseAuth = FirebaseAuth.getInstance();
         exerciseProgressesList = new MutableLiveData<>();
 
-        reference.child("users").child(firebaseAuth.getUid()).child("exerciseProgresses").addValueEventListener(new ValueEventListener() {
+        valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 List<ExerciseProgress> tmpList = new ArrayList<>();
@@ -44,7 +45,8 @@ public class ExerciseDAO {
                     DataSnapshot snapshot1;
                     Iterator<DataSnapshot> iterator = snapshot.getChildren().iterator();
 
-                    while (null != (snapshot1 = iterator.next())){
+                    while (iterator.hasNext()){
+                        snapshot1 = iterator.next();
                         ExerciseProgress exerciseProgress = snapshot1.getValue(ExerciseProgress.class);
                         tmpList.add(exerciseProgress);
                     }
@@ -60,7 +62,10 @@ public class ExerciseDAO {
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
             }
-        });
+        };
+
+        reference.child("users").child(firebaseAuth.getUid()).child("exerciseProgresses").addValueEventListener(valueEventListener);
+
     }
 
 
@@ -86,4 +91,10 @@ public class ExerciseDAO {
     public LiveData<Integer> getTotalExercisesCompleted() {
         return null;
     }
+
+    public void removeListener(){
+    reference.removeEventListener(valueEventListener);
+    }
+
+
 }
