@@ -9,13 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Healthy">
-        <activity android:name=".activities.settings.About"></activity>
-        <activity android:name=".activities.settings.Help" />
-        <activity android:name=".activities.settings.Settings" />
-        <activity android:name=".activities.settings.Notifications" />
-        <activity android:name=".activities.settings.Profile" />
-        <activity android:name=".activities.CreateAccount" />
-        <activity android:name=".activities.Home" />
+        <activity android:name=".activities.settings.About"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".activities.settings.Help"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.settings.Settings"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.settings.Notifications"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.settings.Profile"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.CreateAccount"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.Home"
+            android:screenOrientation="portrait"/>
 
                <activity android:name=".MainActivity">
             <intent-filter>
