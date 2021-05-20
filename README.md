@@ -1,3 +1,8 @@
+LINK TO YOUTUBE VIDEO :
+https://youtu.be/buSVknHTjB0
+The video is sped up to 1.5x speed in order to fit 5 minute requirement :(
+
+
 # Healthy
 Android app for AND course by Aurimas Bruzgys 
 
